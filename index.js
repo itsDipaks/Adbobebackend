@@ -4,6 +4,7 @@ const { UsersRouter } = require("./src/Routes/User.Routes");
 const { PostRouter } = require("./src/Routes/Post.Routes");
 const { AnalyticsRouter } = require("./src/Routes/Analytics.Routes");
 const { Connection } = require("./src/config/db");
+require("dotenv").config();
 const app=express()
 
 app.use(cors())
@@ -16,7 +17,7 @@ app.get("/",(req,res)=>{
   app.use("/posts",PostRouter)
   app.use("/analytics",AnalyticsRouter)
 
-app.listen(8400,async()=>{
+app.listen(process.env.PORT || 8400 ,async()=>{
 try{
     await Connection
     console.log("Server Connected With DataBase")
